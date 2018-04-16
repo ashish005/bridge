@@ -1,0 +1,43 @@
+<div class="ibox">
+    <div class="ibox-title">
+        <strong> Title  </strong> <br>
+        <small class="text-muted"> Last Modified 27 Sep, 2016</small>
+        <div class="m-t-sm">
+            <div class="input-group">
+                <input type="text" placeholder="Search API by name..." class="input-sm form-control">
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-sm btn-primary"> Go!</button>
+          </span>
+            </div>
+        </div>
+    </div>
+    <div class="ibox-content">
+        <div>
+            <button type="button" class="btn btn-white btn-sm"><i class="fa fa-refresh"></i> Refresh</button>
+            <button type="button"class="pull-right btn btn-white btn-sm"><i class="fa fa-refresh"></i> Create Api</button>
+        </div>
+        <div class="file-manager">
+            <h5>API's</h5>
+            <ul class="list-group clear-list" style="overflow-x: scroll;height: 500px;">
+                <li class="list-group-item" *ngFor="let api of apiList" style="padding: 5px 10px 5px 5px;">
+                    <div class="pull-right">
+                        <div class="clear">
+              <span class="label pull-right" style="color:black;margin-top: -10px;">
+                {{ api.createdate | date:'MMM d, y HH:mm:ss Z' }}
+              </span>
+                        </div>
+                    </div>
+                    <span class="label label-success" *ngIf="'Get' == api.method">{{ api.method }}</span>
+                    <span class="label label-danger" *ngIf="'Post' == api.method">{{ api.method }}</span>
+                    <span class="label label-info" *ngIf="'Put' == api.method">{{ api.method }}</span>
+                    <span class="label label-default" *ngIf="'Delete' == api.method">{{ api.method }}</span>
+                    <label (click)="callApiData(item)"> {{ api.name }} </label>
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-outline btn-xs btn-info"><i class="fa fa-trash"></i></button>
+                        <button type="button" class="btn btn-outline btn-xs btn-info" (click)="openAPIContainer(api)"><i class="fa fa-angle-double-right"></i></button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

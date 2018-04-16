@@ -1,0 +1,7 @@
+<div class="form-group"><!--[formGroup]="form"-->
+    <!--<select [id]="id" [formControlName]="id">
+        <option *ngFor="let c of options;" [ngValue]="c">{{c?.value}}</option>
+    </select>-->
+    <label class="control-label" for="select"> {{ label }} </label><i class="bar"></i>
+    <div class="errorMessage" *ngIf="!isValid">{{label}} is required</div>
+</div>

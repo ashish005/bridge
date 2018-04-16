@@ -1,0 +1,5 @@
+<div class="form-group">  <!--[formGroup]="form"-->
+    <input [type]="type"  [placeholder]="placeholder"/> <!--[formControlName]="id"-->
+    <label class="control-label" for="input">{{ label }}</label><i class="bar"></i>
+    <div class="errorMessage" *ngIf="!isValid">{{label}} is required</div>
+</div>

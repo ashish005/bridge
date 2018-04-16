@@ -1,0 +1,16 @@
+<div class="ibox" #boxElementRef>
+    <div class="ibox-content">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="tabs-container">
+                    <ul class="nav nav-tabs">
+                        <li role="presentation" *ngFor="let tab of tabs;let i = index" [class]="(activeIndex==i)?'active':''" (click)="OpenTabContainer(tab, i)"><a>{{tab?.name}}</a></li>
+                    </ul>
+                    <div #activeTabElementRef>
+                        <div e-dynamic-view class="clear" [data]="activeComp?.children" [isCreatorView]="isCreatorView"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

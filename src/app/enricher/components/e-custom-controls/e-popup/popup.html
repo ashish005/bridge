@@ -1,0 +1,61 @@
+<div class="modal-backdrop fade in" ng-class="{in: animate}"
+     ng-style="{'z-index': 1040 + (index &amp;&amp; 1 || 0) + index*10}" modal-backdrop="" style="z-index: 1040;"></div>
+<div tabindex="-1" role="dialog" class="modal fade default-popup in" ng-class="{in: animate}"
+     ng-style="{'z-index': 1050 + index*10, display: 'block'}" ng-click="close($event)" modal-window=""
+     window-class="default-popup" index="0" animate="animate" style="z-index: 1050; display: block;">
+  <div class="modal-dialog" style="min-width: 1000px;" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg'}">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="onCancel()">
+          <span aria-hidden="true">×</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <h4 class="modal-title"> View : <strong class="ng-binding"><!-- {{ data?.name }}--> </strong></h4>
+      </div>
+      <div class="modal-body">
+        <div class="tabs-container">
+          <ul class="nav nav-tabs">
+            <ng-template ngFor [ngForOf]="['Data', 'Options']" let-item="$implicit" let-i="index">
+              <li [class.active]="i == 0" (click)="tabSwitch(item)"><a data-toggle="tab"> {{item}}</a></li>
+            </ng-template>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active">
+              <div class="panel-body">
+                <div *ngFor="let key of data" class="form-group col-lg-6">
+                  <div [ngSwitch]="key['type']">
+                    <div *ngSwitchCase="'string'">
+                      <input type="text" [(ngModel)]="info[key['key']]"/>
+                      <label class="control-label" for="input">{{ key['key'] }}</label><i class="bar"></i>
+                    </div>
+                    <div *ngSwitchCase="'number'">
+                      <input type="number" [(ngModel)]="info[key['key']]"/>
+                      <label class="control-label" for="input">{{ key['key'] }}</label><i class="bar"></i>
+                    </div>
+                    <div *ngSwitchCase="'boolean'">
+                      <input type="checkbox" class="form-control" [(ngModel)]="info[key['key']]">
+                    </div>
+                    <div *ngSwitchCase="'dropdown'">
+                      <select>
+                        <option *ngFor="let c of key['options'];" [ngValue]="info[key['key']]">{{c?.value}}</option>
+                      </select>
+                      <label class="control-label" for="select"> {{ key['key'] }} </label><i class="bar"></i>
+                    </div>
+                  </div>
+                </div>
+                <!--<e-dynamic-form [eOptions]="data?.form"></e-dynamic-form>-->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--<div *ngIf="'custom' === this.eOptions.type" class="row">
+          <div e-dynamic-view [data]="data?.data" [isCreatorView]="false"></div>
+        </div>-->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="onOk()">Save changes</button>
+          <button type="button" class="btn btn-white" data-dismiss="modal" (click)="onCancel()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

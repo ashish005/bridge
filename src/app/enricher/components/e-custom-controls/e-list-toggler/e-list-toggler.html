@@ -1,0 +1,23 @@
+<ul class="list-group" style="margin-bottom: 0;"><!--clear-list-->
+  <ng-template ngFor [ngForOf]="itemData" let-dataItem="$implicit" let-i="index" [ngForTrackBy]="trackByFn">
+    <li class="list-group-item" [ngClass]="{'fist-item': i==0}"
+        dnd-draggable
+        <!--[dragEnabled]="dataItem.isDraggable"-->
+        [dragData]="dataItem"
+        [dropZones]="dataItem.dropZones">
+      <a *ngIf="dataItem.children && dataItem.children.length>0" (click)="scrollElem(i, dataItem)">
+        <i [ngClass]="(dataItem.class)?dataItem.class:'fa fa-chevron-right'"></i>
+      </a>
+      <div class="pull-right">
+        <button *ngIf="dataItem.canClone" class="btn btn-sm btn-white btn-xs" (click)="callback('clone', dataItem)"><span class="fa fa-files-o"></span></button>
+        <button *ngIf="dataItem.canBeApplied" class="btn btn-outline btn-sm btn-info btn-xs" (click)="callback('apply', dataItem)"><span class="fa fa-angle-double-right"></span></button>
+        <button *ngIf="dataItem.isEditable" class="btn btn-sm btn-white btn-xs" type="button" (click)="callback('edit', dataItem)"><i class="fa fa-pencil"></i></button>
+        <button *ngIf="dataItem.canBeDeleted" class="btn btn-sm btn-white btn-xs" (click)="callback('delete',dataItem)"><span class="fa fa-trash"></span></button>
+      </div>
+      <small> {{dataItem?.name }} </small>
+      <div *ngIf="dataItem.children && dataItem.children.length>0" class="card card-block card-header block" style="height: 0px; display: none; width: 100%;" [style.display]="(dataItem.height>0)?'block':'none'" [style.height]="dataItem.height + 'px'" #el>
+        <e-list-toggler *ngIf="dataItem && dataItem.children" [data]="dataItem.children" #el></e-list-toggler>
+      </div>
+    </li>
+  </ng-template>
+</ul>

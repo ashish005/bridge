@@ -1,0 +1,13 @@
+<!--<div class="ibox float-e-margins">
+    <div class="ibox-title"></div>
+    <div class="ibox-content ibox-heading">
+        <h3>You have meeting today!</h3>
+        <small><i class="fa fa-map-marker"></i> Meeting is on 6:00am. Check your schedule to see detail.</small>
+    </div>
+    <div class="ibox-content" #boxElementRef>
+        <e-dynamic-view-invoker class="clear" [data]="eOptions?.children" [isCreatorView]="isCreatorView"></e-dynamic-view-invoker>
+    </div>
+</div>-->
+<div class="ibox-content" #boxElementRef>
+    <div e-dynamic-view class="clear" [data]="eOptions?.children" [isCreatorView]="isCreatorView"></div>
+</div>
